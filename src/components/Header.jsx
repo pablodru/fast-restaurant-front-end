@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { FaHamburger } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-export default function Header () {
+export default function Header ({actualPage}) {
     const navigate = useNavigate();
 
     return (
@@ -12,9 +12,9 @@ export default function Header () {
                 <p>fastfood</p>
             </ScLogo>
             <ScButtons>
-                <p onClick={() => navigate('/')}>Pedidos</p>
-                <p onClick={() => navigate('/kitchen')}>Cozinha</p>
-                <p onClick={() => navigate('/orders')}>Retirada</p>
+                <ScProduct actualPage={actualPage} onClick={() => navigate('/')}>Pedidos</ScProduct>
+                <ScKitchen actualPage={actualPage} onClick={() => navigate('/kitchen')}>Cozinha</ScKitchen>
+                <ScOrder actualPage={actualPage} onClick={() => navigate('/orders')}>Retirada</ScOrder>
             </ScButtons>
         </ScHeader>
     )
@@ -47,12 +47,26 @@ const ScButtons = styled.div`
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:75px;
+    gap:70px;
     p {
         font-family: 'Roboto', sans-serif;
         font-size: 18px;
         font-weight: 600;
         color: #fff;
+        padding:10px 15px;
         cursor: pointer;
+        border-radius: 10px;
     }
+`
+
+const ScProduct = styled.p`
+    background-color: ${(props) => (props.actualPage==='product' ? '#023d0a' : '')};
+`
+
+const ScKitchen = styled.p`
+    background-color: ${(props) => (props.actualPage==='kitchen' ? '#023d0a' : '')};
+`
+
+const ScOrder = styled.p`
+    background-color: ${(props) => (props.actualPage==='order' ? '#023d0a' : '')};
 `

@@ -3,6 +3,8 @@ import axios from "axios";
 import Header from "../components/Header";
 import { styled } from "styled-components";
 import Category from "../components/Category";
+import Product from "../components/Product";
+import Swal from "sweetalert2";
 
 export default function ProductsPage() {
 	const [homeInfos, setHomeInfos] = useState([]);
@@ -44,17 +46,28 @@ export default function ProductsPage() {
 					<p>Seja bem vindo!</p>
 					<input placeholder="O que você procura?" />
 				</ScWelcome>
-				<ScCategoryBox>
-					<div>
+				<ScBox>
+					<ScTitleBox>
 						<p>Categorias</p>
 						<p>Navegue por categoria</p>
-					</div>
+					</ScTitleBox>
 					<ScCategories>
 						{categoriesArray.map((category) => {
-							return <Category category={category} />;
+							return <Category key={category.id} category={category} />;
 						})}
 					</ScCategories>
-				</ScCategoryBox>
+				</ScBox>
+				<ScBox>
+					<ScTitleBox>
+						<p>Produtos</p>
+						<p>Selecione um produto para adicionar ao seu pedido</p>
+					</ScTitleBox>
+					<ScProducts>
+						{homeInfos.products.map((product) => {
+							return <Product key={product.id} product={product} />;
+						})}
+					</ScProducts>
+				</ScBox>
 			</ScPage>
 		</>
 	);
@@ -64,7 +77,7 @@ const ScPage = styled.div`
 	padding: 60px 250px;
 	display: flex;
 	flex-direction: column;
-	gap: 50px;
+	gap: 80px;
 `;
 
 const ScWelcome = styled.div`
@@ -92,26 +105,27 @@ const ScWelcome = styled.div`
 	}
 `;
 
-const ScCategoryBox = styled.div`
+const ScBox = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap:25px;
-	div:nth-child(1) {
-		display: flex;
-		flex-direction: column;
-		gap:10px;
-		p:nth-child(1) {
-			font-family: "Roboto";
-			font-size: 28px;
-			font-weight: 700;
-			color: #000;
-		}
-		p:nth-child(2){
-			font-family: "Roboto";
-			font-size: 18px;
-			font-weight: 400;
-			color: #353434;
-		}
+	gap: 25px;
+`;
+
+const ScTitleBox = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	p:nth-child(1) {
+		font-family: "Roboto";
+		font-size: 28px;
+		font-weight: 700;
+		color: #000;
+	}
+	p:nth-child(2) {
+		font-family: "Roboto";
+		font-size: 18px;
+		font-weight: 400;
+		color: #353434;
 	}
 `;
 
@@ -121,4 +135,13 @@ const ScCategories = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+`;
+
+const ScProducts = styled.div`
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 70px;
 `;

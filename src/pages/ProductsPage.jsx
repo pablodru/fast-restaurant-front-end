@@ -5,9 +5,14 @@ import { styled } from "styled-components";
 import Category from "../components/Category";
 import Product from "../components/Product";
 import Swal from "sweetalert2";
+import ReviewOrder from "../components/ReviewOrder";
 
 export default function ProductsPage() {
 	const [homeInfos, setHomeInfos] = useState([]);
+	const [categorySelected, setCategorySelected] = useState("");
+	const [productsOrdered, setProductsOrdered] = useState([]);
+	const [additionalsOrdered, setAdditionalsOrdered] = useState([]);
+	const [isReviewOrderVisible, setIsReviewOrderVisible] = useState(false);
 
 	const fetchProducts = () => {
 		axios
@@ -37,7 +42,28 @@ export default function ProductsPage() {
 		homeInfos.products[8],
 		homeInfos.products[12],
 	];
-	console.log(categoriesArray);
+
+	const openReviewOrder = () => {
+		setIsReviewOrderVisible(true);
+	};
+
+	const closeReviewOrder = () => {
+		setIsReviewOrderVisible(false);
+	};
+
+	const getColor = (category) => {
+		switch (category) {
+			case "COMBO":
+				return "#c04444";
+			case "SIDE":
+				return "#72ce5b";
+			case "DRINK":
+				return "#cec047";
+			default:
+				return "#4a69cf";
+		}
+	};
+
 	return (
 		<>
 			<Header actualPage="product" />
@@ -53,7 +79,13 @@ export default function ProductsPage() {
 					</ScTitleBox>
 					<ScCategories>
 						{categoriesArray.map((category) => {
-							return <Category key={category.id} category={category} />;
+							return (
+								<Category
+									key={category.id}
+									category={category}
+									setCategorySelected={setCategorySelected}
+								/>
+							);
 						})}
 					</ScCategories>
 				</ScBox>
@@ -64,10 +96,32 @@ export default function ProductsPage() {
 					</ScTitleBox>
 					<ScProducts>
 						{homeInfos.products.map((product) => {
-							return <Product key={product.id} product={product} />;
+							return (
+								<Product
+									key={product.id}
+									getColor={getColor}
+									openReviewOrder={openReviewOrder}
+									setProductsOrdered={setProductsOrdered}
+									categorySelected={categorySelected}
+									product={product}
+								/>
+							);
 						})}
 					</ScProducts>
 				</ScBox>
+				{isReviewOrderVisible && (
+					<ReviewOrder
+						additionalsOrdered={additionalsOrdered}
+						setAdditionalsOrdered={setAdditionalsOrdered}
+						setProductsOrdered={setProductsOrdered}
+						getColor={getColor}
+						product={productsOrdered[productsOrdered.length - 1]}
+						productsOrdered={productsOrdered}
+						additionals={homeInfos.additionals}
+						closeReviewOrder={closeReviewOrder}
+					/>
+				)}
+				{isReviewOrderVisible && <ScBackdrop onClick={closeReviewOrder} />}
 			</ScPage>
 		</>
 	);
@@ -144,4 +198,14 @@ const ScProducts = styled.div`
 	flex-wrap: wrap;
 	justify-content: space-between;
 	gap: 70px;
+`;
+
+const ScBackdrop = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
 `;

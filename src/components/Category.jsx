@@ -2,8 +2,10 @@ import { styled } from "styled-components";
 
 export default function Category(props) {
     const {image, category} = props.category
+	const {setCategorySelected} = props;
+
 	return (
-		<ScCategory>
+		<ScCategory onClick={() => setCategorySelected(category)}>
 			<img src={image} alt={category} />
 			{category === "COMBO" && <p>Combos</p>}
             {category === "SIDE" && <p>Acompanhamentos</p>}
@@ -23,6 +25,7 @@ const ScCategory = styled.div`
 	gap:8px;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px #e0dfdf;
+	cursor: pointer;
 	img {
 		width:100px;
 		height:100px;

@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import ProductOrder from "./ProductOrder";
 
-export default function ContainerOrder({ apiResponseOrders }) {
+export default function ContainerOrder({ apiResponseOrders, page }) {
 
 	const calculateTotalPrice = (orders) => {
         return orders.reduce((totalPrice, order) => {
@@ -34,7 +34,7 @@ export default function ContainerOrder({ apiResponseOrders }) {
 					</>
 				))}
 				<ScBorder></ScBorder>
-				<ScTotal>
+				<ScTotal page={page}>
 					<p>Total do pedido:</p>
 					<p>
 						R$ {price===0 ? "0" : price.toString().slice(0, -2)},{price===0 ? "00" : price.toString().slice(-2)}
@@ -61,8 +61,9 @@ const ScBorder = styled.div`
 
 const ScTotal = styled.div`
 	display: flex;
-	flex-direction: column;
+	flex-direction: ${props => props.page==="checkout" ? "row" : "column"};
 	gap: 25px;
+	justify-content: ${props => props.page==="checkout" ? 'space-between' : ""};
 	p:nth-child(1) {
 		font-family: "Roboto", sans-serif;
 		font-size: 22px;

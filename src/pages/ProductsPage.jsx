@@ -8,8 +8,13 @@ import Swal from "sweetalert2";
 import ReviewOrder from "../components/ReviewOrder";
 import apiUtil from "../utils/api";
 import ContainerOrder from "../components/ContainerOrder/Container";
+import { useNavigate } from "react-router-dom";
+import { useOrderContext } from "../contexts/ordersContext";
 
 export default function ProductsPage() {
+	const { setOrders } = useOrderContext();
+	const navigate = useNavigate();
+
 	const [homeInfos, setHomeInfos] = useState([]);
 	const [categorySelected, setCategorySelected] = useState("");
 	const [productsOrdered, setProductsOrdered] = useState([]);
@@ -37,6 +42,7 @@ export default function ProductsPage() {
 		const response = await apiUtil.getOrdersNotClosed();
 		if (!response) return;
 		setApiResponseOrders(response);
+		setOrders(response);
 	}
 
 	useEffect(() => {
@@ -81,10 +87,11 @@ export default function ProductsPage() {
 	};
 
 	async function cancelOrder() {
-		const response = await apiUtil.cancelOrder();
+		await apiUtil.cancelOrder();
 		setApiResponseOrders([]);
 		setProductsOrdered([]);
 		setAdditionalsOrdered([]);
+		setOrders([]);
 	}
 
 	return (
@@ -132,10 +139,10 @@ export default function ProductsPage() {
 						})}
 					</ScProducts>
 				</ScBox>
-				<ContainerOrder apiResponseOrders={apiResponseOrders} />
+				<ContainerOrder page={"product"} apiResponseOrders={apiResponseOrders} />
 				<ScButtons>
 					<ScCancel onClick={cancelOrder} disabled={!apiResponseOrders.length>0} ordersLength={apiResponseOrders.length}>Cancelar</ScCancel>
-					<ScFinish disabled={!apiResponseOrders.length>0} ordersLength={apiResponseOrders.length}>Finalizar pedido</ScFinish>
+					<ScFinish onClick={() => navigate('/checkout')} disabled={!apiResponseOrders.length>0} ordersLength={apiResponseOrders.length}>Finalizar pedido</ScFinish>
 				</ScButtons>
 				{isReviewOrderVisible && (
 					<ReviewOrder

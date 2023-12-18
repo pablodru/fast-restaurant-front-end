@@ -4,10 +4,12 @@ import { useOrderContext } from "../contexts/ordersContext";
 import { FaWallet } from "react-icons/fa";
 import ContainerOrder from "../components/ContainerOrder/Container";
 import apiUtil from "../utils/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function CheckoutPage() {
 	const { orders, setOrders } = useOrderContext();
+	const [codeNumber, setCodeNumber] = useState(0);
+	const [name, setName] = useState("");
 
 	useEffect(() => {
 		if (orders.length === 0) {
@@ -16,6 +18,8 @@ export default function CheckoutPage() {
 				setOrders(res);
 			});
 		}
+		const response = apiUtil.getCodeNumber();
+		response.then(res => setCodeNumber(res))
 	}, []);
 
 	return (
@@ -36,11 +40,11 @@ export default function CheckoutPage() {
 					<ScForm>
 						<div>
 							<label>Nome do cliente</label>
-							<input type="text" placeholder="Primeiro nome" />
+							<input type="text" placeholder="Primeiro nome" value={name} onChange={e => setName(e.target.value)} />
 						</div>
 						<div>
 							<p>Código</p>
-							<div>200</div>
+							<div>{codeNumber + 1}</div>
 						</div>
 					</ScForm>
 				</ScLeft>

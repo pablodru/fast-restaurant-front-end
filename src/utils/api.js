@@ -27,6 +27,11 @@ async function cancelOrder() {
     return response.data;
 }
 
-const apiUtil = {createOrderNotClosed, getOrdersNotClosed, cancelOrder};
+async function getCodeNumber() {
+    const response = await axios.get(`${URL}/order/number`);
+    return response.data
+}
+
+const apiUtil = {createOrderNotClosed, getOrdersNotClosed, cancelOrder, getCodeNumber};
 
 export default apiUtil;

@@ -8,6 +8,15 @@ async function createOrderNotClosed(body) {
     return response.data
 }
 
-const apiUtil = {createOrderNotClosed};
+async function getOrdersNotClosed() {
+    const {name} = JSON.parse(localStorage.getItem('data'));
+    if (!name) {
+        return false;
+    }
+    const response = await axios.get(`${URL}/order/checkout/${name}`);
+    return response.data;
+}
+
+const apiUtil = {createOrderNotClosed, getOrdersNotClosed};
 
 export default apiUtil;

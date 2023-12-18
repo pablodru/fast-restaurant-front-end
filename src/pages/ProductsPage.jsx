@@ -6,6 +6,8 @@ import Category from "../components/Category";
 import Product from "../components/Product";
 import Swal from "sweetalert2";
 import ReviewOrder from "../components/ReviewOrder";
+import apiUtil from "../utils/api";
+import ContainerOrder from "../components/ContainerOrder/Container";
 
 export default function ProductsPage() {
 	const [homeInfos, setHomeInfos] = useState([]);
@@ -13,6 +15,7 @@ export default function ProductsPage() {
 	const [productsOrdered, setProductsOrdered] = useState([]);
 	const [additionalsOrdered, setAdditionalsOrdered] = useState([]);
 	const [isReviewOrderVisible, setIsReviewOrderVisible] = useState(false);
+	const [apiResponseOrders, setApiResponseOrders] = useState([]);
 
 	const fetchProducts = () => {
 		axios
@@ -30,9 +33,19 @@ export default function ProductsPage() {
 			});
 	};
 
+	const fetchOrders = async () => {
+		const response = await apiUtil.getOrdersNotClosed();
+		if (!response) return;
+		setApiResponseOrders(response);
+	}
+
 	useEffect(() => {
 		fetchProducts();
 	}, []);
+
+	useEffect(() => {
+		fetchOrders();
+	}, [isReviewOrderVisible]);
 
 	if (homeInfos.length === 0) return <p>Carregando</p>;
 
@@ -111,6 +124,11 @@ export default function ProductsPage() {
 						})}
 					</ScProducts>
 				</ScBox>
+				<ContainerOrder apiResponseOrders={apiResponseOrders} />
+				<ScButtons>
+					<ScCancel>Cancelar</ScCancel>
+					<ScFinish>Finalizar pedido</ScFinish>
+				</ScButtons>
 				{isReviewOrderVisible && (
 					<ReviewOrder
 						additionalsOrdered={additionalsOrdered}
@@ -128,6 +146,37 @@ export default function ProductsPage() {
 		</>
 	);
 }
+
+const ScButtons = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 70px;
+`;
+
+const ScCancel = styled.button`
+	border: 1px solid #b4b0b0;
+	width: 300px;
+	height: 70px;
+	background-color: #fff;
+	border-radius: 15px;
+	color: #888585;
+	font-family: "Roboto", sans-serif;
+	font-size: 22px;
+	font-weight: 700;
+`;
+
+const ScFinish = styled.button`
+	border: 1px solid #888585;
+	width: 300px;
+	height: 70px;
+	background-color: #888585;
+	border-radius: 15px;
+	font-family: "Roboto", sans-serif;
+	font-size: 22px;
+	font-weight: 700;
+	color: #000;
+`;
 
 const ScPage = styled.div`
 	padding: 60px 250px;

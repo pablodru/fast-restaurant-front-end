@@ -41,15 +41,16 @@ export default function ReviewOrder({
 
 	async function createOrder(){
 		const productIds = productsOrdered.map(product => product.id);
-		const additionalsIds = additionalsOrdered?.map(additional => additional.id);
-		const existingName = localStorage.getItem('data');
+		const additionalsIds = additionalsOrdered?.map(additional => additional.additional.id);
+		console.log('abc', additionalsIds)
+		const existingName = JSON.parse(localStorage.getItem('data'));
 		if (!existingName) {
-			const name = faker.person.name();
+			const name = faker.person.firstName();
 			localStorage.setItem('data', JSON.stringify({name}));
 			await apiUtil.createOrderNotClosed({productIds, additionalsIds, observation, name});
 			return closeReviewOrder();
 		}
-		await apiUtil.createOrderNotClosed({productIds, additionalsIds, observation, name: existingName});
+		await apiUtil.createOrderNotClosed({productIds, additionalsIds, observation, name: existingName.name});
 		return closeReviewOrder();
 	}
 	

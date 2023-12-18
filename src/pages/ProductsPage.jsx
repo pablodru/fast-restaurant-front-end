@@ -64,6 +64,7 @@ export default function ProductsPage() {
 		setIsReviewOrderVisible(false);
 		setProductsOrdered([]);
 		setAdditionalsOrdered([]);
+		fetchOrders();
 	};
 
 	const getColor = (category) => {
@@ -78,6 +79,13 @@ export default function ProductsPage() {
 				return "#4a69cf";
 		}
 	};
+
+	async function cancelOrder() {
+		const response = await apiUtil.cancelOrder();
+		setApiResponseOrders([]);
+		setProductsOrdered([]);
+		setAdditionalsOrdered([]);
+	}
 
 	return (
 		<>
@@ -126,8 +134,8 @@ export default function ProductsPage() {
 				</ScBox>
 				<ContainerOrder apiResponseOrders={apiResponseOrders} />
 				<ScButtons>
-					<ScCancel>Cancelar</ScCancel>
-					<ScFinish>Finalizar pedido</ScFinish>
+					<ScCancel onClick={cancelOrder} disabled={!apiResponseOrders.length>0} ordersLength={apiResponseOrders.length}>Cancelar</ScCancel>
+					<ScFinish disabled={!apiResponseOrders.length>0} ordersLength={apiResponseOrders.length}>Finalizar pedido</ScFinish>
 				</ScButtons>
 				{isReviewOrderVisible && (
 					<ReviewOrder
@@ -152,30 +160,33 @@ const ScButtons = styled.div`
 	justify-content: flex-end;
 	align-items: center;
 	gap: 70px;
+	button {
+		cursor: pointer;
+	}
 `;
 
 const ScCancel = styled.button`
-	border: 1px solid #b4b0b0;
+	border: ${props => props.ordersLength>0 ? '1px solid #1fb41a' : '1px solid #b4b0b0'};
 	width: 300px;
 	height: 70px;
 	background-color: #fff;
 	border-radius: 15px;
-	color: #888585;
+	color: ${props => props.ordersLength>0 ? '#1fb41a' : '#888585'};
 	font-family: "Roboto", sans-serif;
 	font-size: 22px;
 	font-weight: 700;
 `;
 
 const ScFinish = styled.button`
-	border: 1px solid #888585;
+	border: ${props => props.ordersLength>0 ? '1px solid #1fb41a' : '1px solid #888585'};
 	width: 300px;
 	height: 70px;
-	background-color: #888585;
+	background-color: ${props => props.ordersLength>0 ? '#1fb41a' : '#888585'};;
 	border-radius: 15px;
 	font-family: "Roboto", sans-serif;
 	font-size: 22px;
 	font-weight: 700;
-	color: #000;
+	color: ${props => props.ordersLength>0 ? '#fff' : '#000'};
 `;
 
 const ScPage = styled.div`

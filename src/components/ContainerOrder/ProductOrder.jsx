@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 
 export default function ProductOrder({ product }) {
     const formattedPrice = product.additionalId ? "100" : product.price;
-    console.log(product)
     const name = product.additionalId ? product.additional.name : product.name
 	return (
 		<ScOrderBlock>

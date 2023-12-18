@@ -3,6 +3,8 @@ import { IoMdClose } from "react-icons/io";
 import backgroundImage from "../assets/images/background.svg";
 import Additional from "./Adittional";
 import { useState } from "react";
+import { faker } from '@faker-js/faker';
+import apiUtil from "../utils/api";
 
 export default function ReviewOrder({
 	product,
@@ -36,7 +38,21 @@ export default function ReviewOrder({
 			setProductsOrdered(newProductsOrdered);
 		}
 	}
-	console.log(additionalsOrdered);
+
+	async function createOrder(){
+		const productIds = productsOrdered.map(product => product.id);
+		const additionalsIds = additionalsOrdered?.map(additional => additional.id);
+		const existingName = localStorage.getItem('data');
+		if (!existingName) {
+			const name = faker.person.name();
+			localStorage.setItem('data', JSON.stringify({name}));
+			await apiUtil.createOrderNotClosed({productIds, additionalsIds, observation, name});
+			return closeReviewOrder();
+		}
+		await apiUtil.createOrderNotClosed({productIds, additionalsIds, observation, name: existingName});
+		return closeReviewOrder();
+	}
+	
 	return (
 		<ScOrderBox>
 			<ScTitle>
@@ -133,8 +149,8 @@ export default function ReviewOrder({
 				</div>
 			</ScCommands>
 			<ScButtons>
-				<ScContinue>Continuar Adicionando</ScContinue>
-				<ScAdd>Adicionar ao pedido</ScAdd>
+				<ScContinue onClick={createOrder} >Continuar Adicionando</ScContinue>
+				<ScAdd onClick={createOrder} >Adicionar ao pedido</ScAdd>
 			</ScButtons>
 		</ScOrderBox>
 	);

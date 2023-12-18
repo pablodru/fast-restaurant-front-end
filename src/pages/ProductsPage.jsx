@@ -49,6 +49,8 @@ export default function ProductsPage() {
 
 	const closeReviewOrder = () => {
 		setIsReviewOrderVisible(false);
+		setProductsOrdered([]);
+		setAdditionalsOrdered([]);
 	};
 
 	const getColor = (category) => {

@@ -1,23 +1,8 @@
 import { styled } from "styled-components";
 import ProductOrder from "./ProductOrder";
+import { calculateTotalPrice } from "../../utils/helpers";
 
 export default function ContainerOrder({ apiResponseOrders, page }) {
-
-	const calculateTotalPrice = (orders) => {
-        return orders.reduce((totalPrice, order) => {
-          const orderTotal = order.products.reduce((productTotal, product) => {
-            const productPrice = product.additionalId ? 100 : product.price;
-            return productTotal + productPrice;
-          }, 0);
-      
-          const additionalTotal = order.orderAdditionals.reduce((additionalTotal, additional) => {
-            const additionalPrice = additional.additionalId ? 100 : additional.price;
-            return additionalTotal + additionalPrice;
-          }, 0);
-      
-          return totalPrice + orderTotal + additionalTotal;
-        }, 0);
-      };
 
 	const price = calculateTotalPrice(apiResponseOrders);
 	return (

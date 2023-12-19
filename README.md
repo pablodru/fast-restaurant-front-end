@@ -1,4 +1,4 @@
-# PDV – Fast Food / Full Stack
+# PDV – Fast Food
 
 ## Descrição 👾
 

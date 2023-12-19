@@ -8,7 +8,18 @@ import apiUtil from "../../utils/api";
 import ContainerOrder from "../../components/ContainerOrder/Container/Container";
 import { useNavigate } from "react-router-dom";
 import { useOrderContext } from "../../contexts/ordersContext";
-import { ScButtons, ScWelcome, ScBox, ScTitleBox, ScCategories, ScProducts, ScCancel, ScFinish, ScBackdrop, ScPage } from "./ProductStyle";
+import {
+	ScButtons,
+	ScWelcome,
+	ScBox,
+	ScTitleBox,
+	ScCategories,
+	ScProducts,
+	ScCancel,
+	ScFinish,
+	ScBackdrop,
+	ScPage,
+} from "./ProductStyle";
 
 export default function ProductsPage() {
 	const { setOrders } = useOrderContext();
@@ -20,20 +31,21 @@ export default function ProductsPage() {
 	const [additionalsOrdered, setAdditionalsOrdered] = useState([]);
 	const [isReviewOrderVisible, setIsReviewOrderVisible] = useState(false);
 	const [apiResponseOrders, setApiResponseOrders] = useState([]);
+	const [searchTerm, setSearchTerm] = useState("");
 
 	const fetchProducts = () => {
 		const response = apiUtil.fetchProducts();
-		response.then(res => {
-			setHomeInfos(res)
-		})
+		response.then((res) => {
+			setHomeInfos(res);
+		});
 		response.catch((err) => {
-				Swal.fire({
-					title: "Desculpe, não foi possível mostrar os produtos.",
-					text: `${err.response.data.message}`,
-					icon: "error",
-					confirmButtonText: "Cool",
-				});
+			Swal.fire({
+				title: "Desculpe, não foi possível mostrar os produtos.",
+				text: `${err.response.data.message}`,
+				icon: "error",
+				confirmButtonText: "Cool",
 			});
+		});
 	};
 
 	const fetchOrders = async () => {
@@ -41,7 +53,7 @@ export default function ProductsPage() {
 		if (!response) return;
 		setApiResponseOrders(response);
 		setOrders(response);
-	}
+	};
 
 	useEffect(() => {
 		fetchProducts();
@@ -79,13 +91,23 @@ export default function ProductsPage() {
 		setOrders([]);
 	}
 
+	const filteredProducts = homeInfos.products.filter((product) =>
+		product.name.toLowerCase().includes(searchTerm.toLowerCase())
+	);
+
+	console.log(filteredProducts)
+
 	return (
 		<>
 			<Header actualPage="product" />
 			<ScPage>
 				<ScWelcome>
 					<p>Seja bem vindo!</p>
-					<input placeholder="O que você procura?" />
+					<input
+						placeholder="O que você procura?"
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
+					/>
 				</ScWelcome>
 				<ScBox>
 					<ScTitleBox>
@@ -110,7 +132,7 @@ export default function ProductsPage() {
 						<p>Selecione um produto para adicionar ao seu pedido</p>
 					</ScTitleBox>
 					<ScProducts>
-						{homeInfos.products.map((product) => {
+						{searchTerm.length===0 && (homeInfos.products.map((product) => {
 							return (
 								<Product
 									key={product.id}
@@ -120,13 +142,40 @@ export default function ProductsPage() {
 									product={product}
 								/>
 							);
-						})}
+						}))}
+
+						{searchTerm.length>0 && (filteredProducts.map((product) => {
+							return (
+								<Product
+									key={product.id}
+									openReviewOrder={openReviewOrder}
+									setProductsOrdered={setProductsOrdered}
+									categorySelected={categorySelected}
+									product={product}
+								/>
+							);
+						}))}
 					</ScProducts>
 				</ScBox>
-				<ContainerOrder page={"product"} apiResponseOrders={apiResponseOrders} />
+				<ContainerOrder
+					page={"product"}
+					apiResponseOrders={apiResponseOrders}
+				/>
 				<ScButtons>
-					<ScCancel onClick={cancelOrder} disabled={!apiResponseOrders.length>0} ordersLength={apiResponseOrders.length}>Cancelar</ScCancel>
-					<ScFinish onClick={() => navigate('/checkout')} disabled={!apiResponseOrders.length>0} ordersLength={apiResponseOrders.length}>Finalizar pedido</ScFinish>
+					<ScCancel
+						onClick={cancelOrder}
+						disabled={!apiResponseOrders.length > 0}
+						ordersLength={apiResponseOrders.length}
+					>
+						Cancelar
+					</ScCancel>
+					<ScFinish
+						onClick={() => navigate("/checkout")}
+						disabled={!apiResponseOrders.length > 0}
+						ordersLength={apiResponseOrders.length}
+					>
+						Finalizar pedido
+					</ScFinish>
 				</ScButtons>
 				{isReviewOrderVisible && (
 					<ReviewOrder

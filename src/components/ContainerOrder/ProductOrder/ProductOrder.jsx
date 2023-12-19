@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { ScOrderBlock } from "./ProductOrderStyle";
 
 export default function ProductOrder({ product }) {
     const formattedPrice = product.additionalId ? "100" : product.price;
@@ -13,16 +13,3 @@ export default function ProductOrder({ product }) {
 		</ScOrderBlock>
 	);
 }
-
-const ScOrderBlock = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	p {
-		font-family: "Roboto", sans-serif;
-		font-size: 22px;
-		font-weight: 500;
-		color: #5e5d5d;
-	}
-    margin-bottom: 10px;
-`;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
-import KitchenLogin from "../components/KitchenLogin";
-import { styled } from "styled-components";
-import KitchenOrder from "../components/KitchenOrder";
-import apiUtil from "../utils/api";
+import Header from "../../components/Header/Header";
+import KitchenLogin from "../../components/KitchenLogin/KitchenLogin";
+import KitchenOrder from "../../components/KitchenOrder/KitchenOrder";
+import apiUtil from "../../utils/api";
+import { ScPage, ScSide, ScPreparing, ScBorder } from "./KitchenStyle";
 
 export default function KitchenPage() {
 	const [signed, setSigned] = useState(false);
@@ -49,31 +49,3 @@ export default function KitchenPage() {
 		</>
 	);
 }
-
-const ScBorder = styled.div`
-	min-width: 2px;
-	min-height: 100%;
-	background-color: #000;
-`;
-
-const ScPage = styled.div`
-	padding: 60px 250px;
-	display: flex;
-	justify-content: space-between;
-	gap: 150px;
-`;
-
-const ScSide = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-	width: 50%;
-	height: 50%;
-`;
-
-const ScPreparing = styled.p`
-	font-family: "Roboto", sans-serif;
-	font-size: 34px;
-	font-weight: 800;
-	color: #000;
-`;

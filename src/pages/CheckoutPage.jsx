@@ -6,9 +6,10 @@ import ContainerOrder from "../components/ContainerOrder/Container";
 import apiUtil from "../utils/api";
 import { useEffect, useState } from "react";
 import Payment from "../components/Payment";
-import { calculateTotalPrice } from "../utils/helpers";
+import { calculateTotalPrice, updateName } from "../utils/helpers";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Success from "../components/Success";
 
 export default function CheckoutPage() {
 	const { orders, setOrders } = useOrderContext();
@@ -18,6 +19,7 @@ export default function CheckoutPage() {
 	const [name, setName] = useState("");
 	const [selectedPayment, setSelectedPayment] = useState(null);
 	const [customerValue, setCustomerValue] = useState("");
+	const [close, setClose] = useState(false)
 	const payment = ["Débito", "Crédito", "Dinheiro"];
 	const totalPrice = calculateTotalPrice(orders);
 	const changeValue =
@@ -34,23 +36,31 @@ export default function CheckoutPage() {
 		response.then((res) => setCodeNumber(res));
 	}, []);
 
-	async function cancelOrder() {
+	function reset() {
 		setName("");
 		setCustomerValue("");
 		setSelectedPayment(null);
 		setOrders([]);
+	}
+
+	async function cancelOrder() {
+		reset();
 		await apiUtil.cancelOrder();
 		navigate("/");
 	}
 
 	async function finishOrder() {
-		if (changeValue < 0) {
+		if (selectedPayment==="Dinheiro" &&changeValue < 0) {
 			return Swal.fire({
 				title: "O valor entregue deve ser maior que o total.",
 				icon: "error",
 				confirmButtonText: "Ok!",
 			});
 		}
+		await apiUtil.closeOrder(name);
+		setClose(true);
+		updateName(name);
+		reset();
 	}
 
 	return (
@@ -130,10 +140,23 @@ export default function CheckoutPage() {
 						</ScFinish>
 					</ScButtons>
 				</ScRight>
+				{close && (<Success setClose={setClose} />)}
+				{close && (<ScBackdrop></ScBackdrop>)}
 			</ScPage>
 		</>
 	);
 }
+
+const ScBackdrop = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+`;
+
 
 const ScCancel = styled.button`
 	border: ${(props) =>

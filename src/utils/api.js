@@ -32,6 +32,12 @@ async function getCodeNumber() {
     return response.data
 }
 
-const apiUtil = {createOrderNotClosed, getOrdersNotClosed, cancelOrder, getCodeNumber};
+async function closeOrder(newName) {
+    const oldName = getName();
+    const response = await axios.put(`${URL}/order`, {oldName, newName});
+    return response.data;
+}
+
+const apiUtil = {createOrderNotClosed, getOrdersNotClosed, cancelOrder, getCodeNumber, closeOrder};
 
 export default apiUtil;

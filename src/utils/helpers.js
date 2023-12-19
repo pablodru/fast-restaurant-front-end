@@ -3,6 +3,12 @@ export function getName() {
     return name;
 }
 
+export function updateName(newName) {
+  const data = JSON.parse(localStorage.getItem('data')) || {};
+  data.name = newName;
+  localStorage.setItem('data', JSON.stringify(data));
+}
+
 export const calculateTotalPrice = (orders) => {
     return orders.reduce((totalPrice, order) => {
       const orderTotal = order.products.reduce((productTotal, product) => {

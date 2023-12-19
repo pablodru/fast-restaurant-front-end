@@ -49,7 +49,7 @@ export const ScTotal = styled.div`
 			font-size: 18px;
 		}
 		p:last-child {
-			font-size: 24px;
+			font-size: 22px;
 		}
 	}
 `;

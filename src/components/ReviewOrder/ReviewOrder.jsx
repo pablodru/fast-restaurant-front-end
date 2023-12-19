@@ -42,7 +42,6 @@ export default function ReviewOrder({
 	async function createOrder(){
 		const productIds = productsOrdered.map(product => product.id);
 		const additionalsIds = additionalsOrdered?.map(additional => additional.additional.id);
-		console.log('abc', additionalsIds)
 		const existingName = JSON.parse(localStorage.getItem('data'));
 		if (!existingName) {
 			const name = faker.person.firstName();

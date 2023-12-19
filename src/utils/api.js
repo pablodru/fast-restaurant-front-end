@@ -3,6 +3,11 @@ import { getName } from "./helpers";
 
 const URL = import.meta.env.VITE_API_URL;
 
+async function fetchProducts() {
+	const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
+	return response.data
+}
+
 async function createOrderNotClosed(body) {
 	const response = await axios.post(`${URL}/order`, body);
 
@@ -54,6 +59,7 @@ async function orderReady(id) {
 }
 
 const apiUtil = {
+	fetchProducts,
 	createOrderNotClosed,
 	getOrdersNotClosed,
 	cancelOrder,

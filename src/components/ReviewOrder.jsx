@@ -5,12 +5,12 @@ import Additional from "./Adittional";
 import { useState } from "react";
 import { faker } from '@faker-js/faker';
 import apiUtil from "../utils/api";
+import { getColor } from "../utils/helpers";
 
 export default function ReviewOrder({
 	product,
 	additionals,
 	closeReviewOrder,
-	getColor,
 	productsOrdered,
 	setProductsOrdered,
 	setAdditionalsOrdered,

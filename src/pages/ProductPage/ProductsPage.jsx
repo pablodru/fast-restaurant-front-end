@@ -95,8 +95,6 @@ export default function ProductsPage() {
 		product.name.toLowerCase().includes(searchTerm.toLowerCase())
 	);
 
-	console.log(filteredProducts)
-
 	return (
 		<>
 			<Header actualPage="product" />

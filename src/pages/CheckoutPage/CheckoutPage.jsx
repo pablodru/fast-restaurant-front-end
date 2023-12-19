@@ -3,13 +3,14 @@ import { useOrderContext } from "../../contexts/ordersContext";
 import { FaWallet } from "react-icons/fa";
 import ContainerOrder from "../../components/ContainerOrder/Container/Container";
 import apiUtil from "../../utils/api";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Payment from "../../components/Payment/Payment";
 import { calculateTotalPrice, updateName } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Success from "../../components/Success/Success";
 import {ScBackdrop,	ScCancel,ScFinish,ScButtons,ScInput,ScRight,ScForm,	ScPage,	ScLeft,	ScResume,ScTitle, } from "./CheckoutStyle";
+import { useReactToPrint } from 'react-to-print';
 
 export default function CheckoutPage() {
 	const { orders, setOrders } = useOrderContext();
@@ -24,6 +25,7 @@ export default function CheckoutPage() {
 	const totalPrice = calculateTotalPrice(orders);
 	const changeValue =
 		Number(customerValue.replace(",", ".")) - totalPrice / 100;
+	const componentRef = useRef();
 
 	useEffect(() => {
 		if (orders.length === 0) {
@@ -58,10 +60,15 @@ export default function CheckoutPage() {
 			});
 		}
 		await apiUtil.closeOrder(name);
+		handlePrint()
 		setClose(true);
 		updateName(name);
 		reset();
 	}
+
+	const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
 
 	return (
 		<>
@@ -72,7 +79,7 @@ export default function CheckoutPage() {
 			</ScTitle>
 			<ScPage>
 				<ScLeft>
-					<ScResume>
+					<ScResume ref={componentRef}>
 						<p>Resumo da compra</p>
 						<ContainerOrder apiResponseOrders={orders} page={"checkout"} />
 					</ScResume>

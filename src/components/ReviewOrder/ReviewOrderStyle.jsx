@@ -323,6 +323,7 @@ export const ScButtons = styled.div`
 		height: 70px;
 		border: 1px solid #023d0a;
 		border-radius: 30px;
+		cursor: pointer;
 	}
 
 	@media (max-width: 485px) {

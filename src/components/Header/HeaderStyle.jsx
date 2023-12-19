@@ -19,6 +19,7 @@ export const ScLogo = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 5px;
+	cursor: pointer;
 	p {
 		font-family: "Roboto", sans-serif;
 		font-size: 24px;

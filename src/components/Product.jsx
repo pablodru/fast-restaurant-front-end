@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
 import backgroundImage from "../assets/images/background.svg";
+import { getColor } from "../utils/helpers";
 
 export default function Product({
 	product,
 	categorySelected,
 	setProductsOrdered,
 	openReviewOrder,
-	getColor,
 }) {
     
 	function selectProduct() {

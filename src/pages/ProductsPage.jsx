@@ -22,13 +22,12 @@ export default function ProductsPage() {
 	const [isReviewOrderVisible, setIsReviewOrderVisible] = useState(false);
 	const [apiResponseOrders, setApiResponseOrders] = useState([]);
 
-	const fetchProducts = () => {
-		axios
-			.get(`${import.meta.env.VITE_API_URL}/products`)
-			.then((res) => {
-				setHomeInfos(res.data);
-			})
-			.catch((err) => {
+	const fetchProducts = async () => {
+		const response = await apiUtil.fetchProducts();
+		response.then(res => {
+			setHomeInfos(res)
+		})
+		response.catch((err) => {
 				Swal.fire({
 					title: "Desculpe, não foi possível mostrar os produtos.",
 					text: `${err.response.data.message}`,
@@ -71,19 +70,6 @@ export default function ProductsPage() {
 		setProductsOrdered([]);
 		setAdditionalsOrdered([]);
 		fetchOrders();
-	};
-
-	const getColor = (category) => {
-		switch (category) {
-			case "COMBO":
-				return "#c04444";
-			case "SIDE":
-				return "#72ce5b";
-			case "DRINK":
-				return "#cec047";
-			default:
-				return "#4a69cf";
-		}
 	};
 
 	async function cancelOrder() {
@@ -129,7 +115,6 @@ export default function ProductsPage() {
 							return (
 								<Product
 									key={product.id}
-									getColor={getColor}
 									openReviewOrder={openReviewOrder}
 									setProductsOrdered={setProductsOrdered}
 									categorySelected={categorySelected}
@@ -149,7 +134,6 @@ export default function ProductsPage() {
 						additionalsOrdered={additionalsOrdered}
 						setAdditionalsOrdered={setAdditionalsOrdered}
 						setProductsOrdered={setProductsOrdered}
-						getColor={getColor}
 						product={productsOrdered[productsOrdered.length - 1]}
 						productsOrdered={productsOrdered}
 						additionals={homeInfos.additionals}

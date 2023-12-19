@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Header from "../../components/Header";
-import Category from "../../components/Category";
-import Product from "../../components/Product";
+import Header from "../../components/Header/Header";
+import Category from "../../components/Category/Category";
+import Product from "../../components/Product/Product";
 import Swal from "sweetalert2";
-import ReviewOrder from "../../components/ReviewOrder";
+import ReviewOrder from "../../components/ReviewOrder/ReviewOrder";
 import apiUtil from "../../utils/api";
-import ContainerOrder from "../../components/ContainerOrder/Container";
+import ContainerOrder from "../../components/ContainerOrder/Container/Container";
 import { useNavigate } from "react-router-dom";
 import { useOrderContext } from "../../contexts/ordersContext";
 import { ScButtons, ScWelcome, ScBox, ScTitleBox, ScCategories, ScProducts, ScCancel, ScFinish, ScBackdrop, ScPage } from "./ProductStyle";

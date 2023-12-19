@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Header from "../../components/Header";
-import KitchenLogin from "../../components/KitchenLogin";
-import KitchenOrder from "../../components/KitchenOrder";
+import Header from "../../components/Header/Header";
+import KitchenLogin from "../../components/KitchenLogin/KitchenLogin";
+import KitchenOrder from "../../components/KitchenOrder/KitchenOrder";
 import apiUtil from "../../utils/api";
 import { ScPage, ScSide, ScPreparing, ScBorder } from "./KitchenStyle";
 

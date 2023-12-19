@@ -1,14 +1,14 @@
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import { useOrderContext } from "../../contexts/ordersContext";
 import { FaWallet } from "react-icons/fa";
-import ContainerOrder from "../../components/ContainerOrder/Container";
+import ContainerOrder from "../../components/ContainerOrder/Container/Container";
 import apiUtil from "../../utils/api";
 import { useEffect, useState } from "react";
-import Payment from "../../components/Payment";
+import Payment from "../../components/Payment/Payment";
 import { calculateTotalPrice, updateName } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Success from "../../components/Success";
+import Success from "../../components/Success/Success";
 import {ScBackdrop,	ScCancel,ScFinish,ScButtons,ScInput,ScRight,ScForm,	ScPage,	ScLeft,	ScResume,ScTitle, } from "./CheckoutStyle";
 
 export default function CheckoutPage() {

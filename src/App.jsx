@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import CheckoutPage from "./pages/CheckoutPage"
-import KitchenPage from "./pages/KitchenPage"
-import OrdersPage from "./pages/OrdersPage"
-import ProductsPage from "./pages/ProductsPage"
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage"
+import KitchenPage from "./pages/KitchenPage/KitchenPage"
+import OrdersPage from "./pages/OrdersPage/OrdersPage"
+import ProductsPage from "./pages/ProductPage/ProductsPage"
 import { OrderProvider } from "./contexts/ordersContext"
 
 function App() {

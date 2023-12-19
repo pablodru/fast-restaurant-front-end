@@ -1,7 +1,9 @@
+import Header from "../components/Header";
+
 export default function KitchenPage () {
     return (
         <>
-            <h1>Kitchen</h1>
+            <Header actualPage="kitchen" />
         </>
     )
 }

@@ -1,7 +1,9 @@
+import Header from "../components/Header";
+
 export default function ProductsPage () {
     return (
         <>
-            <h1>Products</h1>
+            <Header actualPage="product" />
         </>
     )
 }

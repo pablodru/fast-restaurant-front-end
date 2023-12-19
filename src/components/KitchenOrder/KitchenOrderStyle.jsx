@@ -71,6 +71,10 @@ export const ScBoxKitchen = styled.div`
 		object-fit: contain;
 		border-radius: 10px;
 	}
+
+	@media (max-width:485px) {
+		width: 100%;	
+	}
 `;
 
 export const ScBox = styled.div`

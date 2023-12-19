@@ -16,6 +16,11 @@ export const ScBoxContainer = styled.div`
 	align-items: center;
 	gap: 20px;
 	box-shadow: 5px 5px 5px 5px #ccc9c9;
+
+	@media (max-width:485px) {
+		width: 80%;
+		height: auto;	
+	}
 `;
 
 export const ScImage = styled.img`
@@ -31,6 +36,10 @@ export const ScTitle = styled.p`
 	font-weight: 800;
 	color: #000;
 	text-align: center;
+
+	@media (max-width:485px) {
+		font-size: 24px;	
+	}
 `;
 
 export const ScInputContainer = styled.div`
@@ -38,6 +47,12 @@ export const ScInputContainer = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	.eye-icon {
+		cursor: pointer;
+	}
+	@media (max-width:485px) {
+			
+	}
 `;
 
 export const ScInput = styled.input`
@@ -57,6 +72,15 @@ export const ScInput = styled.input`
 	font-size: 22px;
 	font-weight: 600;
 	color: #000;
+
+	@media (max-width:485px) {
+		font-size: 18px;
+		max-height: 40px;
+		&::placeholder{
+			font-size: 18px;
+			padding: 10px;
+		}	
+	}
 `;
 
 export const ScButton = styled.button`
@@ -74,5 +98,9 @@ export const ScButton = styled.button`
 
 	&:hover {
 		background-color: #555;
+	}
+
+	@media (max-width:485px) {
+		font-size: 26px;	
 	}
 `;

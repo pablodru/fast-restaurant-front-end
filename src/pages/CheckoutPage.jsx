@@ -88,7 +88,7 @@ export default function CheckoutPage() {
 						</div>
 						<div>
 							<p>Código</p>
-							<div>{codeNumber + 1}</div>
+							<div>{codeNumber.codeNumber + 1}</div>
 						</div>
 					</ScForm>
 				</ScLeft>

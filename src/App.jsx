@@ -3,11 +3,12 @@ import CheckoutPage from "./pages/CheckoutPage"
 import KitchenPage from "./pages/KitchenPage"
 import OrdersPage from "./pages/OrdersPage"
 import ProductsPage from "./pages/ProductsPage"
+import { OrderProvider } from "./contexts/ordersContext"
 
 function App() {
 
   return (
-    <>
+    <OrderProvider>
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<ProductsPage />} />
@@ -16,7 +17,7 @@ function App() {
           <Route path="/orders" element={<OrdersPage />} />
 				</Routes>
 			</BrowserRouter>
-		</>
+		</OrderProvider>
   )
 }
 

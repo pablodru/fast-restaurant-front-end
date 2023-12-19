@@ -5,7 +5,7 @@ import { useState } from "react";
 import { faker } from '@faker-js/faker';
 import apiUtil from "../../utils/api";
 import { getColor } from "../../utils/helpers";
-import {ScOrderBox,	ScTitle,ScProductInfos,	ScProductBox,ScImg,	ScNameDescription,ScNumberOrdered,ScPrice,ScAdittionalsBox,ScObservationBox,ScCommands,ScBorder,ScProductOrdered, ScButtons,ScContinue,ScAdd,} from "./ReviewOrderStyle";
+import {ScOrderBox, ScTitleAdditionals	, ScTitle,ScProductInfos,	ScProductBox,ScImg,	ScNameDescription,ScNumberOrdered,ScPrice,ScAdittionalsBox,ScObservationBox,ScCommands,ScBorder,ScProductOrdered, ScButtons,ScContinue,ScAdd,} from "./ReviewOrderStyle";
 
 export default function ReviewOrder({
 	product,
@@ -95,7 +95,7 @@ export default function ReviewOrder({
 				</ScPrice>
 			</ScProductInfos>
 			<ScAdittionalsBox>
-				<p>Adicionais</p>
+				<ScTitleAdditionals>Adicionais</ScTitleAdditionals>
 				<p>
 					Selecione os ingredientes que você quer adicionar a mais no seu
 					lanche.

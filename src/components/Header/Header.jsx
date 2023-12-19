@@ -7,7 +7,7 @@ export default function Header ({actualPage}) {
 
     return (
         <ScHeader>
-            <ScLogo>
+            <ScLogo onClick={() => navigate('/')}>
                 <FaHamburger style={{color:'#fff', width: '30px', height:'30px'}} />
                 <p>fastfood</p>
             </ScLogo>

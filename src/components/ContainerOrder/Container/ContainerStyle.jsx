@@ -6,12 +6,21 @@ export const ScContainer = styled.div`
 	padding: 50px;
 	border: 2px solid #a8a5a5;
 	border-radius: 10px;
+
+	@media (max-width: 485px) {
+		padding: 20px;	
+	}
 `;
 
 export const ScBorder = styled.div`
 	margin-top: 50px;
 	margin-bottom: 20px;
 	border: 2px dashed #a8a5a5;
+	
+	@media (max-width: 485px) {
+		margin-top: 25px;
+		margin-bottom: 10px;	
+	}
 `;
 
 export const ScTotal = styled.div`
@@ -31,5 +40,16 @@ export const ScTotal = styled.div`
 		font-size: 30px;
 		font-weight: 900;
 		color: #000;
+	}
+
+	@media (max-width: 485px) {
+		gap: 15px;
+		
+		p:nth-child(1) {
+			font-size: 18px;
+		}
+		p:last-child {
+			font-size: 24px;
+		}
 	}
 `;

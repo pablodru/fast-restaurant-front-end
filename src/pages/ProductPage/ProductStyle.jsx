@@ -8,25 +8,29 @@ export const ScButtons = styled.div`
 	button {
 		cursor: pointer;
 	}
+
+	@media (max-width: 485px) {
+		gap: 15px;	
+	}
 `;
 
 export const ScCancel = styled.button`
-	border: ${props => props.ordersLength>0 ? '1px solid #1fb41a' : '1px solid #b4b0b0'};
+	border: ${props => props.ordersLength>0 ? '1px solid #023d0a' : '1px solid #b4b0b0'};
 	width: 300px;
 	height: 70px;
 	background-color: #fff;
 	border-radius: 15px;
-	color: ${props => props.ordersLength>0 ? '#1fb41a' : '#888585'};
+	color: ${props => props.ordersLength>0 ? '#023d0a' : '#888585'};
 	font-family: "Roboto", sans-serif;
 	font-size: 22px;
 	font-weight: 700;
 `;
 
 export const ScFinish = styled.button`
-	border: ${props => props.ordersLength>0 ? '1px solid #1fb41a' : '1px solid #888585'};
+	border: ${props => props.ordersLength>0 ? '1px solid #023d0a' : '1px solid #888585'};
 	width: 300px;
 	height: 70px;
-	background-color: ${props => props.ordersLength>0 ? '#1fb41a' : '#888585'};;
+	background-color: ${props => props.ordersLength>0 ? '#023d0a' : '#888585'};;
 	border-radius: 15px;
 	font-family: "Roboto", sans-serif;
 	font-size: 22px;
@@ -39,6 +43,11 @@ export const ScPage = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 80px;
+
+	@media (max-width: 485px) {
+		padding: 10px 20px;
+		gap: 30px;
+	}
 `;
 
 export const ScWelcome = styled.div`
@@ -64,12 +73,27 @@ export const ScWelcome = styled.div`
 		font-weight: 400;
 		color: #8a8686;
 	}
+
+	@media (max-width: 485px) {
+		gap: 15px;
+		p {
+			font-size: 24px;
+		}
+		input {
+			width: 80%;
+			height: 40px;
+		}
+	}
 `;
 
 export const ScBox = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 25px;
+
+	@media (max-width: 485px) {
+		gap: 15px;	
+	}
 `;
 
 export const ScTitleBox = styled.div`
@@ -88,6 +112,15 @@ export const ScTitleBox = styled.div`
 		font-weight: 400;
 		color: #353434;
 	}
+
+	@media (max-width: 485px) {
+		p:nth-child(1) {
+			font-size: 24px;
+		}
+		p:nth-child(2) {
+			font-size: 16px;
+		}
+	}
 `;
 
 export const ScCategories = styled.div`
@@ -105,6 +138,10 @@ export const ScProducts = styled.div`
 	flex-wrap: wrap;
 	justify-content: space-between;
 	gap: 70px;
+
+	@media (max-width: 485px) {
+		gap: 30px;	
+	}
 `;
 
 export const ScBackdrop = styled.div`

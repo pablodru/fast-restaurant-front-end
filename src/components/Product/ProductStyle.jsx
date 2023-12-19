@@ -46,6 +46,27 @@ export const ScProductBox = styled.div`
 			margin-top: 20px;
 		}
 	}
+	@media (max-width: 485px) {
+		width: 40%;
+		min-height: 150px;
+		max-height:200px;
+
+		div {
+			height: 55%;
+			padding-top: 30px;
+			gap: 5px;
+			p:nth-child(1) {
+				font-size: 14px;
+			}
+			p:nth-child(2) {
+				font-size: 12px;
+			}
+			p:last-child {
+				font-size:16px;
+				margin-top: 7px;
+			}
+		}
+	}
 `;
 
 export const ScImg = styled.img`
@@ -57,4 +78,8 @@ export const ScImg = styled.img`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -90%);
+	@media (max-width: 485px) {
+		width: 90px;
+		height: 60px;
+	}
 `;

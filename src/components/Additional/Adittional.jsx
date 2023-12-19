@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {ScBox, ScAdditionalInfos, ScInfos, ScPriceSelect, ScButton} from "./AdditionalStyle";
+import {ScBox, ScAdditionalInfos, ScInfos, ScPriceSelect, ScButton, ScName, ScDescription} from "./AdditionalStyle";
 
 export default function Additional({
 	additional,
@@ -38,8 +38,8 @@ export default function Additional({
 					<img src={additional.image} alt={additional.name} />
 				</div>
 				<ScInfos>
-					<p>{additional.name}</p>
-					<p>{additional.description}</p>
+					<ScName>{additional.name}</ScName>
+					<ScDescription>{additional.description}</ScDescription>
 				</ScInfos>
 			</ScAdditionalInfos>
 			<ScPriceSelect>

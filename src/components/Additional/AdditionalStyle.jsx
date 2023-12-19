@@ -6,6 +6,9 @@ export const ScBox = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	@media (max-width: 485px) {
+		height: 120px;
+	}
 `;
 
 export const ScAdditionalInfos = styled.div`
@@ -23,6 +26,17 @@ export const ScAdditionalInfos = styled.div`
 			object-fit: cover;
 		}
 	}
+
+	@media (max-width: 485px) {
+		gap: 20px;
+
+		div:nth-child(1) {
+			img {
+				width: 80px;
+				height: 80px;
+			}
+		}
+	}
 `;
 
 export const ScInfos = styled.div`
@@ -31,17 +45,30 @@ export const ScInfos = styled.div`
 	align-items: flex-start;
 	justify-content: center;
 	gap: 20px;
-	p:nth-child(1) {
-		font-family: "Roboto", sans-serif;
-		font-size: 28px;
-		font-weight: 700;
-		color: #000;
+
+	@media (max-width: 485px) {
+		gap: 10px;
 	}
-	p:nth-child(2) {
-		font-family: "Roboto", sans-serif;
-		font-size: 20px;
-		font-weight: 400;
-		color: #424141;
+`;
+
+export const ScDescription = styled.p`
+	font-family: "Roboto", sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+	color: #424141;
+	@media (max-width: 485px) {
+		font-size: 13px;
+	}
+`;
+
+export const ScName = styled.p`
+	font-family: "Roboto", sans-serif;
+	font-size: 28px;
+	font-weight: 700;
+	color: #000;
+
+	@media (max-width: 485px) {
+		font-size: 16px;
 	}
 `;
 
@@ -55,6 +82,13 @@ export const ScPriceSelect = styled.div`
 		font-size: 28px;
 		font-weight: 700;
 		color: #747272;
+	}
+	@media (max-width: 485px) {
+		flex-direction: column;
+		gap: 7px;
+		p:nth-child(1) {
+			font-size: 20px;
+		}
 	}
 `;
 
@@ -70,5 +104,11 @@ export const ScButton = styled.div`
 		height: 100%;
 		background-color: #023d0a;
 		border-radius: 10px;
+	}
+
+	@media (max-width: 485px) {
+		width: 20px;
+		height: 20px;
+		border-radius: 12px;
 	}
 `;

@@ -11,4 +11,10 @@ export const ScOrderBlock = styled.div`
 		color: #5e5d5d;
 	}
     margin-bottom: 10px;
+
+	@media (max-width: 485px) {
+		p {
+			font-size: 18px;
+		}	
+	}
 `;

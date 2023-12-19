@@ -10,6 +10,10 @@ export const ScBox = styled.div`
 		props.selected ? "1px solid #5fc424;" : "1px solid #747272"};
 	padding: 30px;
 	border-radius: 10px;
+
+	@media (max-width:485px) {
+		height: 80px;	
+	}
 `;
 
 export const ScInfos = styled.div`
@@ -22,6 +26,11 @@ export const ScInfos = styled.div`
 		font-size: 28px;
 		font-weight: 700;
 		color: #000;
+	}
+	@media (max-width:485px) {
+		p {
+			font-size:24px;
+		}	
 	}
 `;
 

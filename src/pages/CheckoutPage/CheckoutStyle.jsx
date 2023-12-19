@@ -10,7 +10,6 @@ export const ScBackdrop = styled.div`
 	z-index: 1;
 `;
 
-
 export const ScCancel = styled.button`
 	border: ${(props) =>
 		props.selectedPayment && props.name.length > 0
@@ -25,6 +24,10 @@ export const ScCancel = styled.button`
 	font-family: "Roboto", sans-serif;
 	font-size: 22px;
 	font-weight: 700;
+
+	@media (max-width: 485px) {
+		font-size: 18px;
+	}
 `;
 
 export const ScFinish = styled.button`
@@ -42,6 +45,9 @@ export const ScFinish = styled.button`
 	font-weight: 700;
 	color: ${(props) =>
 		props.selectedPayment && props.name.length > 0 ? "#fff" : "#000"};
+	@media (max-width: 485px) {
+		font-size: 18px;
+	}
 `;
 
 export const ScButtons = styled.div`
@@ -53,6 +59,11 @@ export const ScButtons = styled.div`
 	margin-top: 50px;
 	button {
 		cursor: pointer;
+	}
+
+	@media (max-width: 485px) {
+		gap: 20px;
+		margin-top: 20px;
 	}
 `;
 
@@ -91,6 +102,10 @@ export const ScRight = styled.div`
 		font-size: 22px;
 		font-weight: 600;
 		color: #000;
+	}
+
+	@media (max-width: 485px) {
+		width: 100%;
 	}
 `;
 
@@ -151,6 +166,28 @@ export const ScForm = styled.div`
 			height: 40px;
 		}
 	}
+
+	@media (max-width: 485px) {
+		gap: 20px;
+		div:first-child {
+			label {
+				font-size: 18px;
+			}
+			input {
+				&::placeholder {
+					font-size: 18px;
+				}
+			}
+		}
+		div:last-child {
+			p {
+				font-size: 18px;
+			}
+			div {
+				font-size: 16px;
+			}
+		}
+	}
 `;
 
 export const ScPage = styled.div`
@@ -158,6 +195,12 @@ export const ScPage = styled.div`
 	display: flex;
 	justify-content: space-between;
 	gap: 150px;
+
+	@media (max-width: 485px) {
+		padding: 30px 30px;
+		gap: 20px;
+		flex-direction: column;
+	}
 `;
 
 export const ScLeft = styled.div`
@@ -165,6 +208,11 @@ export const ScLeft = styled.div`
 	flex-direction: column;
 	gap: 70px;
 	width: 50%;
+
+	@media (max-width: 485px) {
+		width: 100%;
+		gap: 20px;
+	}
 `;
 
 export const ScResume = styled.div`
@@ -178,6 +226,13 @@ export const ScResume = styled.div`
 		font-weight: 500;
 		color: #000;
 	}
+
+	@media (max-width: 485px) {
+		gap: 15px;
+		p {
+			font-size: 18px;
+		}
+	}
 `;
 
 export const ScTitle = styled.div`
@@ -190,5 +245,11 @@ export const ScTitle = styled.div`
 		font-size: 38px;
 		font-weight: 700;
 		color: #000;
+	}
+	@media (max-width: 485px) {
+		padding: 10px 30px 0 30px;
+		p {
+			font-size: 28px;
+		}
 	}
 `;

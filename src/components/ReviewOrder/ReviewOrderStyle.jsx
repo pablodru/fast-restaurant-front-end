@@ -16,6 +16,12 @@ export const ScOrderBox = styled.div`
 	flex-direction: column;
 	gap: 50px;
 	overflow-y: auto;
+
+	@media (max-width: 485px) {
+		width: 80%;
+		padding: 20px 25px;
+		gap: 35px;
+	}
 `;
 
 export const ScTitle = styled.div`
@@ -27,6 +33,11 @@ export const ScTitle = styled.div`
 		font-weight: 700;
 		color: #000;
 	}
+	@media (max-width: 485px) {
+		h6 {
+			font-size: 28px;
+		}
+	}
 `;
 
 export const ScProductInfos = styled.div`
@@ -34,6 +45,10 @@ export const ScProductInfos = styled.div`
 	gap: 30px;
 	align-items: center;
 	position: relative;
+
+	@media (max-width: 485px) {
+		gap: 20px;
+	}
 `;
 
 export const ScProductBox = styled.div`
@@ -55,6 +70,14 @@ export const ScProductBox = styled.div`
 		position: absolute;
 		bottom: 0;
 	}
+
+	@media (max-width: 485px) {
+		min-width: 120px;
+		height: 120px;
+		div {
+			height: 50%;
+		}
+	}
 `;
 
 export const ScImg = styled.img`
@@ -66,6 +89,11 @@ export const ScImg = styled.img`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+
+	@media (max-width: 485px) {
+		width: 80px;
+		height: 80px;
+	}
 `;
 
 export const ScNameDescription = styled.div`
@@ -86,6 +114,18 @@ export const ScNameDescription = styled.div`
 		color: #424141;
 		max-width: 250px;
 		line-height: 30px;
+	}
+
+	@media (max-width: 485px) {
+		height: auto;
+		gap: 5px;
+		p:nth-child(1) {
+			font-size: 22px;
+		}
+		p:nth-child(2) {
+			font-size: 14px;
+			line-height: auto;
+		}
 	}
 `;
 
@@ -112,6 +152,15 @@ export const ScNumberOrdered = styled.div`
 		color: #fff;
 		cursor: pointer;
 	}
+
+	@media (max-width: 485px) {
+		width: 120px;
+		height: 40px;
+		margin-top: 0px;
+		div {
+			width: 45px;
+		}
+	}
 `;
 
 export const ScPrice = styled.p`
@@ -122,23 +171,41 @@ export const ScPrice = styled.p`
 	position: absolute;
 	right: 70px;
 	top: 0;
+
+	@media (max-width: 485px) {
+		top: 170px;
+		right: 90px;
+		font-size: 24px;
+	}
 `;
 
 export const ScAdittionalsBox = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
-	p:nth-child(1) {
-		font-family: "Roboto";
-		font-size: 28px;
-		font-weight: 700;
-		color: #000;
-	}
 	p:nth-child(2) {
 		font-family: "Roboto";
 		font-size: 18px;
 		font-weight: 400;
 		color: #353434;
+	}
+
+	@media (max-width: 485px) {
+		margin-top: 30px;
+		gap: 10px;
+		p:nth-child(2) {
+			font-size: 14px;
+		}
+	}
+`;
+
+export const ScTitleAdditionals = styled.p`
+	font-family: "Roboto";
+	font-size: 28px;
+	font-weight: 700;
+	color: #000;
+	@media (max-width: 485px) {
+		font-size: 22px;
 	}
 `;
 
@@ -166,6 +233,18 @@ export const ScObservationBox = styled.div`
 			color: #8f8c8c;
 		}
 	}
+
+	@media (max-width: 485px) {
+		p:nth-child(1) {
+			font-size: 22px;
+		}
+		input {
+			height: 60px;
+			&::placeholder {
+				font-size: 14px;
+			}
+		}
+	}
 `;
 
 export const ScCommands = styled.div`
@@ -190,12 +269,29 @@ export const ScCommands = styled.div`
 			color: #000;
 		}
 	}
+
+	@media (max-width: 485px) {
+		padding: 15px;
+		div:last-child {
+			gap: 10px;
+			p:nth-child(1) {
+				font-size: 18px;
+			}
+			p:nth-child(2) {
+				font-size: 24px;
+			}
+		}
+	}
 `;
 
 export const ScBorder = styled.div`
 	margin-top: 50px;
 	margin-bottom: 20px;
 	border: 1.5px dashed #a8a5a5;
+
+	@media (max-width: 485px) {
+		margin-top: 25px;
+	}
 `;
 
 export const ScProductOrdered = styled.div`
@@ -208,6 +304,12 @@ export const ScProductOrdered = styled.div`
 		font-size: 24px;
 		font-weight: 400;
 		color: #5f5d5d;
+	}
+
+	@media (max-width: 485px) {
+		p {
+			font-size: 18px;
+		}
 	}
 `;
 
@@ -222,6 +324,14 @@ export const ScButtons = styled.div`
 		border: 1px solid #023d0a;
 		border-radius: 30px;
 	}
+
+	@media (max-width: 485px) {
+		justify-content: space-between;
+		gap: 15px;
+		button {
+			width: 50%;
+		}
+	}
 `;
 export const ScContinue = styled.button`
 	background-color: #fff;
@@ -229,12 +339,18 @@ export const ScContinue = styled.button`
 	font-size: 24px;
 	font-weight: 700;
 	color: #023d0a;
+	@media (max-width:485px) {
+		font-size: 18px;
+	}
 `;
 
 export const ScAdd = styled.button`
 	background-color: #023d0a;
-    font-family: "Roboto";
+	font-family: "Roboto";
 	font-size: 24px;
 	font-weight: 700;
 	color: #fff;
+	@media (max-width:485px) {
+		font-size: 18px;
+	}
 `;

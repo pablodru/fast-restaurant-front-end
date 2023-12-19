@@ -22,4 +22,17 @@ export const ScCategory = styled.div`
 		font-weight: 700;
 		color: #000;
 	}
+
+	@media (max-width: 485px) {
+		width: 45%;
+		height: 50px;
+		
+		img {
+			width: 60%;
+			height: 80%;
+		}
+		p {
+			font-size: 14px;
+		}
+	}
 `;

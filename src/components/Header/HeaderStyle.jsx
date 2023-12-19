@@ -8,6 +8,10 @@ export const ScHeader = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px 50px;
+
+	@media (max-width: 485px) {
+		padding: 10px 20px;
+	}
 `;
 
 export const ScLogo = styled.div`
@@ -20,6 +24,13 @@ export const ScLogo = styled.div`
 		font-size: 24px;
 		font-weight: 700;
 		color: #fff;
+	}
+
+	@media (max-width: 485px) {
+		flex-direction: column;
+		p {
+			font-size: 18px;
+		}
 	}
 `;
 
@@ -36,6 +47,13 @@ export const ScButtons = styled.div`
 		padding: 10px 15px;
 		cursor: pointer;
 		border-radius: 10px;
+	}
+	@media (max-width: 485px) {
+		gap: 20px;
+		p {
+			font-size: 16px;
+			padding: 5px;
+		}
 	}
 `;
 

@@ -8,14 +8,15 @@ import apiUtil from "../utils/api";
 export default function KitchenPage() {
 	const [signed, setSigned] = useState(false);
 	const [orders, setOrders] = useState([]);
+	const [handleKitchenFeed, setHandleKitchenFeed] = useState(false);
 
 	useEffect(() => {
 		const response = apiUtil.getOrdersClosed();
 		response.then(res => {
 			setOrders(res)
 		})
-	}, []);
-	console.log(orders)
+	}, [handleKitchenFeed]);
+
 	return (
 		<>
 			<Header actualPage="kitchen" />
@@ -28,7 +29,7 @@ export default function KitchenPage() {
 							if(!order.isReady){
 							return (
 								order.products.map(product => {
-									return <KitchenOrder customer={order.customer} product={product} side="left" observation={order.observation} orderAdditionals={order.orderAdditionals} />
+									return <KitchenOrder key={product.id} setHandleKitchenFeed={setHandleKitchenFeed} id={order.id} customer={order.customer} product={product} side="left" observation={order.observation} orderAdditionals={order.orderAdditionals} />
 								})
 							)}})}
 					</ScSide>
@@ -39,7 +40,7 @@ export default function KitchenPage() {
 							if(order.isReady){
 							return (
 								order.products.map(product => {
-									return <KitchenOrder product={order.product} side="right" observation={order.observation} orderAdditionals={order.orderAdditionals} />
+									return <KitchenOrder key={product.id} setHandleKitchenFeed={setHandleKitchenFeed} id={order.id} customer={order.customer} product={product} side="right" observation={order.observation} orderAdditionals={order.orderAdditionals} />
 								})
 							)}})}
 					</ScSide>
@@ -50,8 +51,8 @@ export default function KitchenPage() {
 }
 
 const ScBorder = styled.div`
-	width: 1px;
-	height: 100%;
+	min-width: 2px;
+	min-height: 100%;
 	background-color: #000;
 `;
 

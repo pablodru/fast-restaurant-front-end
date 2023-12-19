@@ -1,14 +1,27 @@
 import { styled } from "styled-components";
 import { IoClose } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
+import apiUtil from "../utils/api";
 
 export default function KitchenOrder({
 	side,
 	product,
 	observation,
 	orderAdditionals,
-  customer
+  customer,
+  id,
+  setHandleKitchenFeed
 }) {
+
+  async function deleteOrder() {
+    await apiUtil.deleteOrder(id);
+    setHandleKitchenFeed(prev => !prev);
+  }
+
+  async function orderReady() {
+    await apiUtil.orderReady(id);
+    setHandleKitchenFeed(prev => !prev);
+  }
 
 	return (
 		<ScBoxKitchen side={side}>
@@ -22,13 +35,13 @@ export default function KitchenOrder({
           {orderAdditionals.length>0 && (orderAdditionals.map(additional => (<ScComment>1x {additional.additional.name}</ScComment>)))}
 				</ScDiv>
 				<ScButtons>
-					<ScDelete>
+					<ScDelete onClick={deleteOrder}>
 						<IoClose
 							style={{ color: "#da4328", width: "70%", height: "70%" }}
 						/>
 					</ScDelete>
 					{side === "left" && (
-						<ScConfirm>
+						<ScConfirm onClick={orderReady}>
 							<FaCheck
 								style={{ color: "#52b12c", width: "70%", height: "70%" }}
 							/>
